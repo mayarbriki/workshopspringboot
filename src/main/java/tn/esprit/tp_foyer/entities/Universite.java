@@ -1,6 +1,9 @@
 package tn.esprit.tp_foyer.entities;
 import jakarta.persistence.* ;
 import lombok.* ;
+import org.hibernate.annotations.Cascade;
+
+import java.util.Set;
 
 @Entity
 public class Universite {
@@ -10,6 +13,8 @@ public class Universite {
 
     private String nomUniversite;
     private String adresse;
+    @OneToOne
+    private Foyer foyer ;
 
 
 }

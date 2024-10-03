@@ -1,6 +1,9 @@
 package tn.esprit.tp_foyer.entities;
 import jakarta.persistence.* ;
 import lombok.*;
+
+import java.util.Set;
+
 @Entity
 public class Etudiant {
     @Id
@@ -11,6 +14,7 @@ public class Etudiant {
     private String prenomEt;
     private Long cin;
     private String ecole;
-
+@ManyToMany(cascade =CascadeType.ALL)
+    private Set<Reservation> reservations ;
 
 }
