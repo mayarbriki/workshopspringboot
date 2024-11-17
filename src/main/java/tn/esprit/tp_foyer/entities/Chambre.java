@@ -9,6 +9,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Chambre {
     @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +19,9 @@ private Long idChambre ;
     private TypeChambre typeC ;
 @ManyToOne
     Bloc bloc ;
+@ToString.Exclude
 @OneToMany
     List<Reservation> reservations ;
+
 
 }

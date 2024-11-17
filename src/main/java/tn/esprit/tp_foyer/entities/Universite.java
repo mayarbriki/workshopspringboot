@@ -4,7 +4,10 @@ import lombok.* ;
 import org.hibernate.annotations.Cascade;
 
 import java.util.Set;
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Universite {
     @Id

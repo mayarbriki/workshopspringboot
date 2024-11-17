@@ -4,7 +4,10 @@ import lombok.* ;
 
 import java.util.Date;
 import java.util.Set;
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Reservation {
     @Id
