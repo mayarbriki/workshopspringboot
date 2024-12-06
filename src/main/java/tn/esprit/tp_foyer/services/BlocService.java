@@ -31,4 +31,24 @@ BlocRepository blocrepository ;
     public void deleteBloc(Long idBloc) {
         blocrepository.deleteById(idBloc);
     }
+    @Override
+    public List<Bloc> getUnassignedBlocs() {
+        return blocrepository.findByFoyerIsNull(); // Assuming "foyer" is a nullable relation in Bloc.
+    }
+
+    @Override
+    public List<Bloc> getBlocsByCapacity(Long capacity) {
+        return blocrepository.findByCapaciteBlocGreaterThan(capacity);
+    }
+
+    @Override
+    public List<Bloc> getBlocsByNomStartingWith(String nomBloc) {
+        return blocrepository.findByNomBlocStartingWith(nomBloc);
+    }
+
+    @Override
+    public List<Bloc> getBlocsByNameAndCapacity(String prefix, int minCapacity) {
+        return blocrepository.findByNomBlocStartingWithAndCapaciteBlocGreaterThan(prefix, minCapacity);    }
+
+
 }

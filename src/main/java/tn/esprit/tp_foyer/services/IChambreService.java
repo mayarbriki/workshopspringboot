@@ -10,6 +10,7 @@ public interface IChambreService {
     Chambre updateChambre(Chambre chambre );
     void deleteChambre(Long id) ;
     Chambre retrieveChambre(Long chambreId) ;
-
+    List<Chambre> getChambresByType(String type);
+    Chambre getChambreByNumber(long number);
 
     }

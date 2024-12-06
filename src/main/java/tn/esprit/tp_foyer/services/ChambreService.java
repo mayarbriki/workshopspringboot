@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import tn.esprit.tp_foyer.entities.Chambre;
+import tn.esprit.tp_foyer.entities.TypeChambre;
 import tn.esprit.tp_foyer.repository.ChambreRepository;
 
 
@@ -49,4 +50,18 @@ public class ChambreService implements IChambreService{
     public Chambre retrieveChambre(Long chambreId) {
         return chambreRepository.findById(chambreId).get();
     }
+
+    @Override
+    public List<Chambre> getChambresByType(String type) {
+        TypeChambre typeChambre = TypeChambre.valueOf(type.toUpperCase());
+        return chambreRepository.findByTypeC(typeChambre);
+    }
+
+
+    @Override
+    public Chambre getChambreByNumber(long number) {
+        return chambreRepository.findByNumeroChambre((long) number);
+    }
+
+
 }

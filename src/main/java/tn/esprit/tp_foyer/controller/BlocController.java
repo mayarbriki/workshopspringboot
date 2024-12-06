@@ -43,4 +43,20 @@ public class BlocController {
         iBlocService.deleteBloc(idBloc);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/unassigned")
+    public List<Bloc> getUnassignedBlocs() {
+        return iBlocService.getUnassignedBlocs();
+    }
+    @GetMapping("/capacity/{capacity}")
+    public List<Bloc> getBlocsByCapacity(@PathVariable Long capacity) {
+        return iBlocService.getBlocsByCapacity(capacity);
+    }
+    @GetMapping("/name/{nomBloc}")
+    public List<Bloc> getBlocsByNomStartingWith(@PathVariable String nomBloc) {
+        return iBlocService.getBlocsByNomStartingWith(nomBloc);
+    }
+    @GetMapping("/filter-by-name-and-capacity")
+    public List<Bloc> getBlocsByNameAndCapacity(@RequestParam String prefix, @RequestParam int minCapacity) {
+        return iBlocService.getBlocsByNameAndCapacity(prefix, minCapacity);
+    }
 }

@@ -42,4 +42,12 @@ public class ChambreController {
         Chambre chambre = chambreService.updateChambre(c);
         return chambre;
     }
+    @GetMapping("/filter-by-type/{type}")
+    public List<Chambre> getChambresByType(@PathVariable String type) {
+        return chambreService.getChambresByType(type);
+    }
+    @GetMapping("/find-by-number/{number}")
+    public Chambre getChambreByNumber(@PathVariable int number) {
+        return chambreService.getChambreByNumber(number);
+    }
 }
