@@ -6,8 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import tn.esprit.tp_foyer.entities.Bloc;
 import tn.esprit.tp_foyer.entities.Chambre;
 import tn.esprit.tp_foyer.entities.TypeChambre;
+import tn.esprit.tp_foyer.repository.BlocRepository;
 import tn.esprit.tp_foyer.repository.ChambreRepository;
 
 
@@ -21,6 +23,7 @@ import java.util.List;
 public class ChambreService implements IChambreService{
     @Autowired
     ChambreRepository chambreRepository ;
+    BlocRepository blocRepository;
     @Override
     public Chambre addChambre(Chambre chambre) {
         return chambreRepository.save(chambre);
@@ -62,6 +65,18 @@ public class ChambreService implements IChambreService{
     public Chambre getChambreByNumber(long number) {
         return chambreRepository.findByNumeroChambre((long) number);
     }
+
+    @Override
+    public Chambre assignChambreToFoyer(Long idChambre, Long idBloc) {
+
+            Chambre chambre = chambreRepository.findById(idChambre)
+                    .orElseThrow(() -> new RuntimeException("Chambre not found"));
+            Bloc bloc = blocRepository.findById(idBloc)
+                    .orElseThrow(() -> new RuntimeException("Bloc not found"));
+
+            chambre.setBloc(bloc); // Direct assignment
+            return chambreRepository.save(chambre);
+        }
 
 
 }

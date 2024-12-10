@@ -12,5 +12,7 @@ public interface IChambreService {
     Chambre retrieveChambre(Long chambreId) ;
     List<Chambre> getChambresByType(String type);
     Chambre getChambreByNumber(long number);
+    Chambre assignChambreToFoyer(Long idChambre, Long idBloc);
 
-    }
+
+}

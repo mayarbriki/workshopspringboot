@@ -1,6 +1,8 @@
 package tn.esprit.tp_foyer.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tp_foyer.entities.Chambre;
 import tn.esprit.tp_foyer.services.IChambreService;
@@ -13,14 +15,12 @@ import java.util.List;
 public class ChambreController {
     IChambreService chambreService;
 
-    // http://localhost:8089/tpfoyer/chambre/retrieve-all-chambres
     @GetMapping("/retrieve-all-chambres")
     public List<Chambre> getChambres() {
         List<Chambre> listChambres = chambreService.getChambre();
         return listChambres;
     }
 
-    // http://localhost:8089/tpfoyer/chambre/retrieve-chambre/8
     @GetMapping("/retrieve-chambre/{chambre-id}")
     public Chambre retrieveChambre(@PathVariable("chambre-id") Long chId) {
         Chambre chambre = chambreService.retrieveChambre(chId);
@@ -31,12 +31,10 @@ public class ChambreController {
         Chambre chambre = chambreService.addChambre(c);
         return chambre;
     }
-    // http://localhost:8089/tpfoyer/chambre/remove-chambre/{chambre-id}
     @DeleteMapping("/remove-chambre/{chambre-id}")
     public void removeChambre(@PathVariable("chambre-id") Long chId) {
         chambreService.deleteChambre(chId);
     }
-    // http://localhost:8089/tpfoyer/chambre/modify-chambre
     @PutMapping("/modify-chambre")
     public Chambre modifyChambre(@RequestBody Chambre c) {
         Chambre chambre = chambreService.updateChambre(c);
@@ -49,5 +47,10 @@ public class ChambreController {
     @GetMapping("/find-by-number/{number}")
     public Chambre getChambreByNumber(@PathVariable int number) {
         return chambreService.getChambreByNumber(number);
+    }
+    @PutMapping("/{idChambre}/assign-bloc/{idBloc}")
+    public ResponseEntity<Chambre> assignChambreToBloc(@PathVariable Long idChambre, @PathVariable Long idBloc) {
+        Chambre updatedChambre = chambreService.assignChambreToFoyer(idChambre, idBloc);
+        return new ResponseEntity<>(updatedChambre, HttpStatus.OK);
     }
 }

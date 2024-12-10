@@ -1,6 +1,7 @@
 package tn.esprit.tp_foyer.services;
 
 import tn.esprit.tp_foyer.entities.Bloc;
+import tn.esprit.tp_foyer.entities.Chambre;
 import tn.esprit.tp_foyer.entities.Foyer;
 
 import java.util.List;
